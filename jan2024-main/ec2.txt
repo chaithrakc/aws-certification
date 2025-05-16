@@ -1,0 +1,1061 @@
+=====================================================================================
+
+Coupon : JAN2024
+
+https://www.udemy.com/course/linuxwithavinash/?couponCode=JAN2024
+
+https://t.me/+pQ5_AauyOTAxNGRh
+
+Slack : https://join.slack.com/t/awswithavinash/shared_invite/zt-29wlomw11-6b2v0vLiBoiKwkGhy1hhuw
+
+
+=====================================================================================
+
+EC2 : Elastic Compute Cloud : Server class :  Region specific service
+
+Instance = Server = Azure VM = Compute engine = box
+
+CLient Class OS : Win7, win10
+Server Class OS : Windows server 2008 r2, 2012, 2012 r2, 2016, 2019
+
+On-Demand ec2 instances : When we have unpredictable workloads.. Testing our application for the firsttime.. "FREE TIER ELIGIBILITY"
+Pricing : /Sec (With min of 60 Sec)
+
+Reserved ec2 instances : When out workload is stable and predictable.. For longer durations.. We can reserve the capacity for 1yr/3yr.. "NO FREE TIER ELIGIBILITY""
+
+	Standard RI : We cannot change config during the period. 
+	Convertable RI : We can change the config during the period.
+	Scheduled RI : if we have persistant/repeated requests. (N V)
+
+Pricing : 
+Full Upfront : Pay 100% as onetime. 
+Partial upfront : Pay 30-50% as onetime, Then remaining amount pay monthly basis with redused hourly price, based on usage.
+No upfront : Pay everything monthly basis. 
+--> AWS Marketplace : We can sell our resources. 
+
+Spot instances : When we have flexible start/stop durations.. No Criticaldata/ application is delivering..!!  Test env.. Bid your price against AWS pricing. If our quoted price is euqual or greater than aws pricing, we will get the instance.
+--> high confi server at low cost for temp requ.
+"NO FREE TIER ELIGIBILITY"
+--> quoted price is euqual or greater than aws pricing, we will get the instance.
+--> If price increased, AWS will terminate(delete) our instance.
+
+1 hr 50 Min : Price increased, AWS Terminated our Instance : 1 Hr
+1 hr 50 Min : Price not increased, You Terminated our Instance : 1 Hr 50 Min
+
+______________________________________
+
+
+Only On-Demand ec2 instances comes under free tier eligibility.
+** Fix to one region. ap-south-1 (personal account) / us-east-1 (sandbox)
+
+
+Windows ec2 instance launch : 
+
+Step 1 : Choose an AMI (Amazon Machine Image)	: Operating System : Windows server 2016 base
+
+Step 2 : Choose an Instance type 		: vCPU, Memory(RAM), Network perf
+==> t2.micro
+
+
+General Purpose : Stable/balanced performance of compute, memory and network resources.
+Type : t2, t3, t4, m5
+
+Compute Optimized : We will get more CPU performances from these instances. We will have high perf processors in these instances.
+Type : c4, c5, c6  (Compute / CPU)
+
+Memory Optimized : We will get more RAM perf. Workloads required to process large set of data via memory.
+Type : r4, r5, r6, x1, z1, u1 (RAM)
+
+GPU Optimized / Accelerated computing : We will get more graphic processings, Efficient for data pattern matching, High level gaming.
+Type : p2, p3, p4, g3, g4, f1
+
+Storage optimized : we will get more Storage/ Hard Disk performance. FOr the application required more IOPS, we use this types.
+Type : d2, d3, i3
+
+m5.large	: 2 CPU, 8 RAM
+c5.xlarge	: 4 cpu, 8 ram
+t4g.medium	: 2 cpu, 4 ram
+
+Maintenance windows : Sat 03 AM IST.. : Greenzone window : CRQ (Change Request)
+
+Step 3 : Configure additional settings
+	VPC, ROles, userdata
+
+	Instance Termination protection : Enable (Protect against accidental termination)
+	Shutdown behaviour : STOP
+
+Step 4 : Choose storage
+
+	root volume : volume that contains Operating system : 30 gb for windows
+
+Step 5 : Add Tags : COmbination of Key and Value pairs.
+
+Name : 
+Project : 
+Platform : Windows / Linux
+COst center : AAZAA
+
+Step 6: Configure Security Group : Security group acts as Firewall at Instance level.
+
+OS Ports/protocols : 0 - 65535
+
+Windows : RDP : 3389 : 
+Linux : SSH : 22
+Webserver : http : 80
+Secure web : https : 443
+mysql : 3306
+mssql : 1433
+NFS : 2049
+
+source : From where you want to connect to this instance.
+MyIP : It picks currently connected network ip address. No one can connect to the server apart from this particular network users.
+Custom : We can give any network IPs. 
+Anywhere : Anyone with valid credentials can connect to the server. (username and pwd)
+
+Step 7 : Review and launch with keypair.
+
+Keypair : Key pair contains public key and private key. (.pem)
+
+AWS Holds the Public Key. This will be stored in our launched ec2 instances.
+Customer/WE holdes the Private key. Used to decrypt/generate the password for initial instance connect.
+
+Public IP : Unique across the globe : Use this to connect to your instance.
+Private IP : Unique with in the aws network : 
+
+COnnect to Windows Instance :
+
+--> Open "run" , type "mstsc" , CLick enter.. Provide instance "Public IP".
+--> Choose instance "connect', choose "RDP Client", "Download remote desktop file"
+
+MAC : https://apps.apple.com/us/app/microsoft-remote-desktop/id1295203466?mt=12
+
+
+start/stop : 10 days work.. 1 month.. : Stop, Start the server
+Terminate : Delete the server..
+
+
+Windows : No addl softwares required..  Click on start --> search "remote desktop connection"
+Computername/ip : provide public IP
+Username : Administrator
+Pwd : get it using keypair
+
+==> open run (Windows Key + R) --> type "mstsc"
+Computername/ip : provide public IP
+Username : Administrator
+Pwd : get it using keypair
+
+==> Select Instance, Click on "connect" and Select "RDP Client", click on "Download remote desktop file", open the downloaded file.
+
+
+Mac : Goto appstore --> search for "microsoft remote desktop" software.
+Computername/ip : provide public IP
+Username : Administrator
+Pwd : get it using keypair
+
+________________________
+
+Task : Launch windows ec2 instance and using keypair get connect to ec2 instance.
+
+Task 2 : Change the password of "Administrator", Disconnect from the instance. Now try to login to ec2 instance using "keypair pwd", "Custom password".
+
+Task 3 : "Create a new user" in ec2 instance and provide him "Local administrator rights", also provide him "Remote desktop permissions".. Take a session with this user along with administrator.
+
+Task 4 : Install "IIS" and deliver a webpage for everyone.
+
+=======================================================================================
+
+
+Linux OS : Amazon Linux 2 OS.. RHEL, Ubuntu, Suse, Kali
+
+RedHat, CentOS --> Amazon Linux 
+
+Step 1 : Choose an AMI (Amazon Machine Image)	: Operating System : Amazon Linux 2 
+	
+Step 2 : Choose an Instance type : t2.micro	: vCPU, Memory(RAM), Network perf
+
+Step 3 : Configure additional settings
+	VPC, ROles, userdata
+
+	Instance Termination protection : Enable
+	Shutdown behaviour : STOP
+
+Step 4 : Choose storage
+
+	root volume : volume that contains Operating system : 8/10 gb for linux
+
+Step 5 : Add Tags : COmbination of Key and Value pairs.
+
+Name : 
+Project : 
+Platform : Windows / Linux
+Cost center : AAZAA
+
+Step 6: Configure Security Group : Security group acts as Firewall at Instance level.
+
+Linux : SSH : 22 : Anywhere
+Webserver : http : 80
+Secure web : https : 443
+
+Step 7 : Review and launch with keypair.
+
+Keypair : Key pair contains public key and private key. (.pem)
+
+How to Connect to Linux Instance :
+
+--> Select Instance, click on "Connect" --> "ec2 instance connect" --> "ec2-user" --> Connect. (We don't use this in realtime)
+___
+
+--> We can use windows Cmd prompt to connect to Linux Instance : Install "OpenSSH" in your laptop. 
+	--> apps&features --> optional features --> openssh client--> Enable/Install.
+
+==> https://docs.microsoft.com/en-us/windows-server/administration/openssh/openssh_install_firstuse
+
+==> ssh -i keypair.pem ec2-user@publicip/dns
+ssh -i "linuxkp.pem" ec2-user@ec2-3-108-53-198.ap-south-1.compute.amazonaws.com
+
+__
+
+Putty : Putty Don't support .pem format files.. Putty need .ppk (putty private key) file format. 
+1 --> generate a .ppk file, before launching linux instance and use the .ppk file to connect using putty application.
+2 --> Convert the existing .pem file to .ppk file using PuttyGEN application. 
+
+https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html	--> Download putty
+
+__
+
+Install "GIT for Windows", Then use GIt terminal to connect. 
+
+https://git-scm.com/download/win
+
+--> go to the location where we have the keypair, "Git Bash here"
+
+
+Bad Permissions error :  chmod 400 keypairname.pem  (Works with GIT for Windows)
+
+https://stackoverflow.com/questions/8193768/unprotected-private-key-file-error-using-ssh-into-amazon-ec2-instance-aws
+___________________________
+
+Linux Instances : Default username : ec2-user  / redhat / ubuntu
+
+Task : Launch Linux ec2 instance and get connect to it.
+
+
+===========================================================================
+
+D: 20/01/2024
+
+whoami		--> tells us as what user we are working.
+sudo		--> allow user to execute the command with root level permissions
+sudo su		--> Switch to root user
+exit		--> Exit from root user to ec2-user
+clear		--> Clears the screen
+
+ls			--> List the files/folders
+ls -a		--> List all including hidden files
+pwd			--> Print working directory
+mkdir		--> Create a Directory/Folder
+touch 		--> o bytes file/ plain file
+cd			--> Change directory
+cd ..		--> To come one step back from current path.
+rmdir		--> remove directory, if it is empty.
+rm -rf foldername/	--> Delete a directory that contains files
+
+copy and paste :  cp
+cut and paste  :  mv
+
+to rename a file we use "mv" command :  mv oldfilename newfilename
+
+_________________________
+
+vim / vi / nano
+
+VIM Editor : 
+
+vim filename	--> Open this file in VIM editor
+
+Press I			--> INSERT Mode
+Press ESC		--> ReadOnly Mode
+:wq				--> Write and Quit (Write changes to file and quit the editor)
+:q!				--> Quit the Editor without writing the changes
+
+=====================================================================================
+
+D: 22/01/2024
+
+Req: Make this linux Instance as Web Server (Apache).
+
+rpm : Redhat package manager
+yum : Yellowdog Update manager
+
+yum install httpd -y
+service httpd status			--> httpd webserver service status
+service httpd start/stop/restart
+chkconfig httpd on				--> Makes httpd as logon service.
+
+path : /var/www/html/
+
+cd /var/www/html/
+
+Apache configuration path : /etc/httpd/conf/httpd.conf  ==> edit this file "LISTEN 80", change it to desired port number.. "LISTEN 8080", Save and Quit
+
+==> make sure you restart the service to take changes effect.
+
+
+to check web page locally : curl http://localhost/
+
+We get 2 types of errors..
+1. Timeout : Your req not able to reach the web server. problem with Security group.
+2. Connection refused : Service is not in running state. Verify status by running "service httpd status"
+
+Tool to Move the files to amazon linux ec2 instance : WinSCP
+
+
+
+current Ip : http://54.196.103.169/  Stop and start
+
+--------
+
+EIP : Elastic IP Address : If you need a dedicated/fixed IP address for your ec2 instance, you can generate an EIP and associate it.
+-> EIP wont change even after performing STOP/START operation on ec2 instance.
+NO FREE TIER ELIGIBILITY. IT WILL COST YOU.
+
+
+Task 1 : Launch an amazon linux 2, make it as webserver and deliver custom web content. (httpd-apache)
+
+Task 2 : Once task 1, completed. Change apache configuration port from 80 to 8888 and Delive same webpage on 8888 port.
+
+Task 3 : Launch an Amazon Linux 2, install nginx and deliver custom web page.
+
+Test EIP in Sandbox environment.
+
+===========================================================================
+
+D: 23/01/2024
+
+How to deal with Volumes
+
+root volume : COntains OS : gp2,gp3, io1, io2 and magnetic
+
+IOPS : Input and output Operations per second
+
+GP2, Gp3 : general Purpose :SSD: Suitable for most of the common workloads.
+io1, io2 : Provisional IOPS :SSD: Gives best perf among all storage options. 
+sc1 ($), st1($$) : HDD : wont support boot/root volume : Best throughput values. : log processing/bigdata
+magnetic : standard : We dont use this.. : Cheapest storage 
+
+Windows : FAT, NTFS and ReFS
+Linux : ext3, ext4, xfs
+
+EBS : Elastic Bloc Storage : Block based storage : Designed to run OS.. 
+
+root : SSD and magnetic is supported.
+Addl volume : SSD, HDD and magnetic
+
+Step 4 : CHoose Storage
+
+--> EBS : Elastic Block Storage
+SSD / HDD / Magnetic
+
+
+root Volume : COntains OS : gp2, gp3, io1, io2 and standard/magnetic
+Additional volume : all root supported + st1, sc1
+
+General Purpose SSD : (gp2 / gp3) : Low latency interactive applications, Dev and test environment..!!
+Min : 1 GiB, Max: 16 TiB... Max IOPS: 16,000 IOPS
+gp2 --> works 1 : 3 ration (1 gb volume = 3 iops), with min of 100..
+
+for gp3, we have an advantage, we can mention/choose required IOPS count.
+
+__
+
+Provisioned iops : (io1 & io2) : workload that requires Specific IOPS count.. or if we need more than 16,000 iops for our ec2 instance.. I/O Intensive database workloads..
+Min : 4 GiB, Max: 16 TiB... Max IOPS: 64,000 IOPS
+--> It provided highest performance among all. 
+
+io2 Block Express volume : Min : 4 GiB, Max: 64 TiB...
+Supports 256,000 IOPS.. 
+__
+
+Magnetic : Standard : Less freq accessed data, Low cost storage solutions.. 
+Min : 1 GiB, Max: 1 TiB...
+__
+
+Throughput optimized HDD : st1 : Bigdata, Data warehousing, log processing.. 
+Size : Min 125 GiB - 16 TiB.. IOPS : 500.. Throughput : 500 MB/S..
+
+Cold HDD : sc1 : THroughput orientes storages, but with Less Frequently accessed.. Lower cost than st1.. 
+Size : Min 125 GiB - 16 TiB.. IOPS : 250.. Throughput : 250 MB/S..
+
+
+Free Tier : 30 gb Gp2 and standard storage.. 
+
+--> 20% of volume size (or) 5 gb.. WHichever is highest
+
+** Need to perform OS level operations to make additional volumes available.
+--> Disk Management --> diskmgmt.msc --> choose volume --> make it online --> Initilize disk --> SImple volume --> NTFS/FAT --> Create
+
+
+Windows : FAT, FAT32, NTFS, ReFS
+Linux : ext3, ext4, xfs
+
+
+grab the name of new volume : /dev/xvdb
+
+lsblk		--> List block based devices
+df -Th		--> List the available volumes
+
+/dev/xvda1	--> root volume (/)
+/dev/xvdf	--> new Volume name 
+
+In windows OS, we mount new volumes to drive letters.. But in Linux OS, We mount volumes to Directory. 
+
+mkdir newvolume
+
+file -s /dev/xvdf  	--> If this command returns with "data", no file system.
+			--> If this returns ext3/xfs filesystem.. We have a file system.
+
+
+mkfs -t xfs /dev/xvdf		--> Make file system and write it to Additonal volume
+
+mount /dev/xvdf newvolume/	--> mount addl volume to directory
+
+
+=================
+
+
+--> Above mount is temp mount only.. it won't available after the instance reboot.
+--> To make this volume perm mount to the directory, Add entry in "/etc/fstab" file.
+--> Get the entry information from "/etc/mtab" file. 
+
+--> cat /etc/mtab		--> Grab the entry related to newly added addl volume
+
+/dev/xvdb /home/ec2-user/newvolume xfs rw,relatime,attr2,inode64,noquota 0 0
+
+--> vim /etc/fstab.. Write the above entry, save and quit the editor. (Do not edit the existing entry).
+
+mount -all
+__________
+
+--> Increase the volume size the "Cosole" first, then execute the below command..!!
+
+We can use "xfsprogs" to increase existing volume size. 
+
+yum install xfsprogs
+
+--> xfs_growfs -d /volume-Mountpoint
+--> xfs_growfs -d /home/ec2-user/newvolume
+
+--> Increasing volume is possible, But redusing volume is not possible.
+
+===========================================================================
+
+
+Task : Launch an ec2 instance, Add a 2 gb volume, associate it with ec2 instance.. Make 2 gb volume available at os level and write some data into it. (Reboot and verify)
+df -Th after reboot, also should show 2gb volume.
+
+Task 2 : Increase the size of 2gb volume to 4 gb and verify with df -Th. (personal Account)
+
+Task 3 : Launch another ec2 instance in same AZ as existing ec2 instance.. Detach the volume from instance 1 and attach it to newly launched ec2 instance. You should be able to see all the data.
+(personal Account)
+
+=================================================
+
+New volume name : xvdf	Full Path : /dev/xvdf
+
+file -s /dev/xvdf
+If output is ; Data, No file system
+If output : XFS/EXT3.. There is a file system 
+
+Command to write a file system :  mkfs -t xfs /dev/xvdf
+
+mkdir newvol
+
+mount /dev/xvdf /newvol
+
+
+lsblk
+df -Th
+file -s /dev/xvdf
+mkfs -t xfs /dev/xvdf
+mkdir newvol
+mount /dev/xvdf newvol/
+
+File to add an entry, for perm mount : /etc/fstab
+Get the entry information from : /etc/mtab
+
+cat /etc/mtab ==> You will see latest entry related to the mount we performed. Get that emntry and write it to "/etc/fstab" file.
+
+
+/dev/xvdf /home/ec2-user/newvol xfs rw,relatime,attr2,inode64,logbufs=8,logbsize=32k,noquota 0 0
+
+vim /etc/fstab  ==> And add entry
+
+=====
+
+To extend existing volume.
+
+step 1 : IN AWS Console, Increase the volume size
+Step 2 : Run xfs_growfs -d "mountpoint"
+
+ex: xfs_growfs -d "/home/ec2-user/newvol"
+
+============================================================================================
+
+
+Instance 1 in ap-south-1a ---> Instance 2 in ap-south-1a ==> Detach from instance 1 and attach to instance 2.. 
+
+Instance 1 in ap-south-1a ---> Instance 2 in ap-south-1b ==> Detach from instance 1 and attach to instance 2 is not possible as both are running in diff AZs.. 
+Choose the volume --> Take a Snapshot --> Create a volume from snapshot, while creating choose ap-south-1b --> we'll get volume in 1b --> Attach to Instance 2 running in ap-south-1b
+
+Instance 1 in Mumbai : ap-south-1a ---> Instance 2 in N Virginia : us-east-1a ==> Detach from instance 1 and attach to instance 2 is not possible as both are running in diff regions.. 
+Choose the volume --> Take a Snapshot --> Copy the snapshot to desired region (NV) 
+--> Create a volume, while creating choose us-east-1a --> volume in 1a --> Attach to Instance 2 running in N Virginia : us-east-1a.
+(Data transfer from region to region cost us)
+
+
+Instance 1 in AWSACC1 : Mumbai : ap-south-1a ---> Instance 2 in AWSACC2 : Mumbai : ap-south-1a ==> Detach from instance 1 and attach to instance 2 is not possible as both are running in diff aws accounts, regions.. 
+Choose the volume --> Take a Snapshot --> share the snapshot to another aws account 
+--> Create a volume, while creating choose ap-south-1a in acc2
+
+Instance 1 volume need to share with everyone.. --> Create a snapshot --> Share to "Public" --> 
+
+
+MultiAttach : https://www.youtube.com/watch?v=2j8R3ajSo3s
+
+** We cannot decrease the size of an EBS volume. Only increase is possible.
+EBS VOlumes : Always use EBS volumes only.
+
+
+Snapshot : Backup copy of an EBS volume.
+
+https://aws.amazon.com/blogs/storage/automating-amazon-ebs-snapshot-and-ami-management-using-amazon-dlm/
+
+
+--> Snapshots are point-in-time copies.
+--> Snapshots stores in S3 platform (Not in your s3).
+--> Can we view what data we have inside snapshots..?? NO
+--> Snapshot Works with Incremental backup mechanism.
+--> If our volume is Encrypted, Snapshot also Encrypts automaticALLY. 
+--> When we are launching/creating a volume from encrypted snapshot, volume also encrypts automatically.
+--> We cannot share an Default Master key Encrypted snapshot.
+--> If we are using Custom Managed encryption key, we can share snapshot with another aws account, but we need to provide permissions on encryption key also to another aws account.
+
+______________________________________________________________________________________
+
+SOP : Standard Operational Procedure : 
+
+DLM : Data Lifecycle manager : Automate the snapshot creation process. 
+--> We use "tags" to filter the resources. 
+
+Default Retention Values: 
+Prod : 5 Days
+Non Prod : 3 Days 
+
+Fast snapshot restore : Enable fast snapshot restore to ensure that volumes created from snapshots created by this policy instantly deliver all of their provisioned performance.
+
+
+Task : https://aws.amazon.com/blogs/storage/automating-amazon-ebs-snapshot-and-ami-management-using-amazon-dlm/
+
+__________
+
+
+Task 1 : Launch an ec2 instance in ap-south-1a.. Create a "New volume with 1 gb size" in ap-south-1a and attach this volume to ec2 instance and make it available and write some data. Goto AWS console "Increase the volume size to 2 GB", make this 2gb volume available at OS level. Write some data.
+
+Task 2 : Launch Another ec2 instance in ap-south-1b..
+Get the 2gb volume data from instance 1a to newly launch 1b ec2 instance.. Make Same volume available to "1b instance"..!!
+
+
+============================================================================================
+
+D: 25/01/2024
+
+Scenario : 10 ec2 instances.. AV, MS Office, Custom WP, CUstom OS users, Applications, IIS.. 
+
+--> Launching 10 instance : connect to 10 instance and install everything in all 10 instance.. 
+--> 1 ec2 instance : Install everything.. : Keep it as Image : --> Launch "n" number using image..
+
+Client : OS with CIS Benchmarks (Center for Internet Security) : 
+
+*** GoldenAMI = CUstomized AMI.. Won't work with keypairs.. We need to change the password.. 
+
+Ec2 instance , Perform customizations --> Create a Golden AMI --> From GAMI we can launch n num of ec2 instance.. 
+
+Similar to Snapshots..
+
+--> We can launch another instance in same region using GAMI.
+--> We can copy Region 1 GAMI to Region 2, And launch an ec2 instance in Region 2. 
+--> We can share GAMI from Acc 1 to Acc 2. 
+--> We can share GAMI to public.
+
+______________________________________
+
+
+Task 1 : Launch Linux ec2 instance, Make it as webserver.. Add custom webpages.. Add a 2gb volume while launching and make it perm mount.. then Create a Golden AMI and Launch instance from GAMI and test output. 
+
+
+Task 2 : Launch a Windows ec2 instance, Connect to it.. CHANGE ADMINISTRATOR PASSWORD, change wallpaper, install "putty" software, Install IIS and deliver custom webpage..
+Now, STOP the INSTANCE and create a GoldenAMi. Launch an instance from GAMI, connect and Verify you got all custom settings or not.???
+
+
+Task 3 : How to setup password authentication to ec2-user user instead of keypair authentication.
+https://comtechies.com/password-authentication-aws-ec2.html
+
+
+Task 4 : How to create a new user in Amazon Linux 2, how can we provide ssh access to instance for newly created user using keypair.
+
+==========================================================================================
+
+D: 26/01/2024
+
+--> CloudWatch : Service to monitor all AWS resources i.e; s3, ec2, rds.. 
+--> We can monitor CPU, Disk and network for ec2 instance.
+** With Default metrics, we cannot monitor MEMORY Utilisation. 
+--> We can install an CloudWatch agenet and monitor Memory usage aswell. 
+
+
+--> We have two types of monitorings in AWS.
+==> Basic Monitoring : Free, Enabled by defaultly. 5 Minutes is monitoring interval.
+==> Detailed Monitoring : COST US, Need to enable explicitlty, 1 minute is monitoring interval.
+
+Vertical Scaling : Upgrading / Adding more resources to same Instance. i.e; from t2.micro to t3.medium
+
+To perform vertical scaling in AWS, First stop the ec2 instance, then only we can upgrqade it.
+
+
+#!/bin/bash
+yum install httpd -y
+service httpd start
+chkconfig httpd on
+echo "<h1>This is my first webserver</h1>" > /var/www/html/index.html
+
+
+#!/bin/bash
+yum install httpd -y
+service httpd start
+chkconfig httpd on
+echo "<h1>This is my Second webserver</h1>" > /var/www/html/index.html
+
+
+Vertical Scaling : Upgrading same instance resources.. t2.micro --> c5.2xlarge
+
+
+Task : Launch an ec2 instance, while launching pass userdata and deliver webpage.
+
+Task 2 : Create an alarm, when Instance CPU usage is less than 30% for 10 minutes, Stop the instance and get an alart to your email.
+
+Task 3 (optional) : Install stress package on an ec2 instance, run this stress command for 10 min.. 
+Now, create an Alarm to monitor your ec2 instance cpu, when cpu usage is 80% more for 5 min, Reboot your ec2 instance and get an alert to your email.
+
+
+____________________________________________________________________________________
+
+
+Vertical Scaling : Upgrading same instance resources.. t2.micro --> c5.2xlarge
+Horizantal Scaling : Distribute application load to multiple ec2 instances.. 
+
+Classic ELB : Layer 4/7 LB.. : Outdated.. : http, https, tcp, udp.. 
+Application ELB : Layer 7 ELB.. : http and https
+Network ELB : Layer 4 ELB.. : TCP, UDP, TLS 
+Gateway ELB : GENEVE / 3rd party security virtual applicances.. 
+
+**Please select at least two Subnets in different Availability Zones to provide higher availability for your load balancer.
+
+** Dont use same Security group for your ec2 instance and Load balancer.
+
+For ELBs, We will get DNS Endpoint.. Not an IP Address
+
+If you want to view IP address of an ELB, 
+--> Navigate to "Network interfaces" and observe, You can get IP of ELB.
+--> nslookup "ELB-DNS-NAME"
+___________________________________________________
+
+Target Group : Each target group is used to route requests to one or more registered targets. When you create each listener rule, you specify a target group and conditions. When a rule condition is met, traffic is forwarded to the corresponding target group.
+
+Application ELB : http and https
+
+Application Load balancing algorithm : 
+--> Round robin
+--> Least outstanding requests
+--> Weighted ***
+
+--> We cannot assign a dedicated IP address for our Application ELB.
+
+Network ELB : TCP.. 
+--> Flow Hash algorithm.
+--> We CAN assign a dedicated IP address for our network ELB.
+
+Application LB Supports path based routing, also supports Microservices.
+
+NLB is capable to handle millions req/sec.
+
+ELB Access Logs : Logging on ELB. Destination is s3.
+___________________________________________________________________
+
+Free Tier : 750 hrs/month
+-----------------------
+
+
+Task : Create an ALB, and deliver webpage on One TG / Port :80. 
+Test Stickyness.
+
+Task 2 : on existing LB, Add listeners on 8080, 8888. 
+
+Task 3 : what is Telnet and how to use telnet, test it with an ec2 instance on port 22.
+
+============================================================================================
+
+ASG : Auto scaling group.
+
+1. Create a GoldenAMI
+2. create an ELB
+3. Create ASG
+	3.1 Create launch Template : GoldenAMI, Instancetype, Security Group, keypair
+	3.2 Create scalings/asg : Manual scaling/ automatic scaling, ELB, Desired count..
+
+
+ASG : Auto Scaling Group :
+
+--> DYnamic (Step/Simple/TargetTracking) Load 
+--> Scheduled scaling : 
+--> Manual : 
+
+
+ScaleIN : Remove the instance from ASG
+ScaleOut : Add the instances to ASG.
+
+How ASG will choose the instance to terminate if any ScaleIN action triggered..!! 
+
+ASG Termination policy : refer to the image.
+
+
+t2.micro --> Current configuration.. 
+t2.nano..??? How you can do this with 0 downtime..!! 
+
+
+Create a new launch configuration/template.. Associate this with ASG. Terminate the existing instance.. Now new instance will come with updated launch config settings.
+(Set Desired capacity to 2)..!!! 
+
+
+Task : 
+Create an ASG with a V1 Launch tempplate.. Launch with Desired capacity as 2.. Test it.. 
+
+Configure Alarm to set Desired capacity as 1, when cpu utilisation is =<10. 
+--
+Configure scheduled scaling to set DC as 3 instance at specific time and test it. 
+
+
+Optional task : Try "stress" command to put load on ec2 instance and test high usage.
+
+stress --cpu 1 --timeout 900
+nproc --> cpu count
+
+________
+
+1 : Create a Golden AMI
+2 : Create a ELB
+3 : Create a Launch template
+4 : Create an ASG with Fixed (2) and test it
+5 : Confiure Scheduled scaling.
+6 : Configure Simple scaling (low usage scaling)
+7 : Configure Versions for Launch Tempplate. 
+
+
+========================================================================
+
+Task : Configure pipeline mechanism between ec2 instances and elb.
+--> Edit your ec2 instance security group and open port 80 for ELB SG
+
+--> When we give direct instance IP, it should not deliver any webpage.
+--> When we give elb dns name, this should work.
+
+Task 2 : Create a launch template with t2.micro
+Create an ASG, Adjust Desired capacity manually and observe ec2 creation and terminations.
+
+Task 3 : Create an ASG and try Simple Scaling, Step scaling with given script.
+
+============================================================================================
+
+D: 31/01/24
+
+EFS : Elastic File System : File Share : Shared Storage solution for Multiple ec2 instances. : 
+--> Network File System : NFS v4.1 : Port 2049
+--> Support only Linux OS 
+--> No Pre Provisioning required.
+--> Add entry in "/etc/fstab" file.  Get entry info from "/etc/mtab" file
+
+mkdir instance1
+
+sudo mount -t nfs4 -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport fs-059f7ba6a82f9405a.efs.ap-south-1.amazonaws.com:/ (shared)
+
+
+sudo mount -t nfs4 -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport fs-059f7ba6a82f9405a.efs.ap-south-1.amazonaws.com:/ instance1/
+
+sudo mount -t nfs4 -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport fs-059f7ba6a82f9405a.efs.ap-south-1.amazonaws.com:/ /var/www/html/
+
+
+==> For windows OS we can use FSx, Works with SMB Protocol (Server message block)
+
+_______________________________________________________________________________________
+
+--> Create a security group and open NFS protocol. 
+			--> Open for entire VPC IP address
+			--> Open for ec2 instance private IP addresses
+		** --> Open for ec2 instance Security group (pipeline mechanism)
+		   --> As a last option, if no above option is working, open for Everyone.
+
+
+
+Task : Create EFS and Mount it to multiple ec2 instances. Deliver Web Content to both the instances from EFS.
+
+
+Task : Launch an ec2 instance, connect to it, Create EFS.. Install httpd in your ec2 instance.. Mount EFS to /var/www/html/ and create index.html...  make it as perm mount.
+==> Now create a GOLDENAMI.. 
+==> Configure ASG with this GOLDENAMI.. COnnect to any of the ec2 instance, modify the content.. this modification should reflect in all instance.. 
+
+============================================================================================
+
+Plecement Groups : 
+--> Cluster PG : for group of ec2 instance, to get very very min latency, we can use this.
+--> partition PG
+--> Spread PG
+
+https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-groups.html
+
+======================================
+
+Platform : Windows
+Platform : Linux
+
+Naming Standards : P-Wi-wt-ad :   P-LI-WT-HD :
+		: S-Li-ap2-c1 : 
+
+s : Staging / NonProd
+u : uat 
+p : production
+Dr : DR Resource
+
+wi : Windows
+li : Linux
+wt : app code, tw : app code
+c1/c2 : Client id 
+
+
+P-WI-WT-IN
+P-WI-WT-C1-03
+
+============================================================================================
+
+D: 01/02/24
+
+Eventbridge
+
+--> Event Driven process
+--> Scheduled process
+--> Trigger both
+
+0 18 ? * MON-FRI *
+
+Event Bridge : 
+
+{"version":"0","id":"1e2c141c-88ec-1a01-0df1-08b210311a1d","detail-type":"EC2 Instance State-change Notification","source":"aws.ec2","account":"501170964283","time":"2024-02-01T03:56:00Z","region":"ap-south-1","resources":["arn:aws:ec2:ap-south-1:501170964283:instance/i-0486cac9d3f4fd63a"],"detail":{"instance-id":"i-0486cac9d3f4fd63a","state":"stopped"}}
+
+ Sample Event : 
+
+ INPUT PATH:
+
+ {"instance-id":"$.detail.instance-id", "state":"$.detail.state", "time":"$.time", "region":"$.region", "account":"$.account"}
+
+ INPUT TEMPLATE: 
+
+ "At <time>, Status of your EC2 instance <instance-id> in the AWS Region <region> has changed to <state>."
+ 
+
+https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html
+ https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-create-rule-schedule.html#eb-cron-expressions
+
+
+Task 1 : Configure Eventbridge to stop an ec2 instance at a particular time using Crontab. (9:15 Am)
+
+Task 2 : Configure to stop an ec2 instance after 5 minutes, trigger an email with custom email format.
+
+Task 3 : Configure to get an alert when someone deleted an s3 bucket.
+** You have to create a data trail. In sandbox you can try this. 
+________________________
+
+Instance store volumes : We don't use this in real environments.   (NO FREE TIER ELIGIBILTY)
+	--> Also called as Ephemeral storages (Temporary storage).
+	--> We cannot STOP/Start the instance.
+	--> Storage will be delivered from underlying host/physical resources.
+	--> If required, we can reboot. We don't loss any data.
+	--> If underlying h/w failure happens, we'll loss all the data.
+
+________________________
+
+Instance Isolation : https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjr993FsAyS65uL4QPbGu8n_JcB6Fwq6jDylWglIapsQQjHfbcbir83OT-I-_a-nhvvo8&usqp=CAU
+
+==========================================================================================
+
+D: 02/02/24
+
+AWS CLI : 
+
+IAM User : programatic Access : AccesskeyID and SecretAccesskey : AWS CLI.. 3rd, cdk/sdk
+
+https://aws.amazon.com/cli
+
+aws --version			--> Tells us what cli version is installed.
+
+configure the aws cli: 
+aws configure
+AccesskeyID:
+SecretAccesskey:
+Region:
+output :
+
+
+aws servicename commands
+
+aws s3 ls			--> List all the s3 buckets
+aws s3 ls s3://avinash.bucket	--> list objects from the s3 bucket
+aws s3 ls avinash.bucket
+
+aws s3 cp/sync sourcepath destinationpath
+
+aws s3 mb s3://avinash.bucket.1 --region ap-south-1
+
+aws s3 cp s3://avinash.bucket s3://avinash.bucket.1 --recursive
+
+aws s3 sync s3://avinash.bucket s3://avinash.bucket.1
+
+presign
+
+aws s3 presign s3://bucketname/objectname --expire 60
+
+aws s3 presign s3://avinash.bucket.1/s3.txt --expire 30
+
+___
+
+https://docs.aws.amazon.com/cli/latest/reference/
+
+__
+
+https://awsclibuilder.com/home
+
+___
+
+--profile : We can access multiple AWS accounts from cli using profile option.
+
+Credentials path in windows : C:/users/yourusername/.aws/ Enable Hidden directory view, 
+
+____________________________
+
+
+Task : Launch an ec2 instance using CLI.  (ami id, instance-type, subnet-id, security group id, keypair, count)
+
+Task 2 : Stop that ec2 instance using CLI comamnds.
+
+Task 3 : Start the same ec2 instance using cli.
+
+Task 4 : Launch an ec2 instance and Configure a role to access s3 data. (dont configure accesskey/secretkey.. use roles)
+
+Task 5 : Upload a webtemplate to an s3 bucket.. while launching the instance, make your instance as webserver then copy all the webcontent from s3 bucket to web content path (/var/www/html/). Perform using "userdata".
+
+#!/bin/bash
+yum install httpd -y
+service httpd start
+chkconfig httpd on
+copy data from s3 to ec2		(--recursive)
+
+Task 6 (Optional.. For Exp candidates mandatory) :  Create an IAM user in Account 1.. Allow this user to switch to "Account 2".. When he switch to account 2, Allow him to perform only "S3FullAccess".
+
+Refer : https://www.youtube.com/watch?v=sZiiB4yF0VY
+
+
+=======================================================================================
+
+D: 03/02/2024
+
+IN SANDBOX: Kindly note that during EC2 IAM role creation you need to choose only "AmazonS3FullAccess" and "AmazonSSMManagedInstanceCore". 
+"AmazonSSMManagedInstanceCore" policy will be used for connecting ec2 instances via session manager.
+
+
+Systems Manager run command :
+--> All instance must associated with "SSM ROle". 
+--> OS level, Every instance have an SSM agent.  
+--> Using Tags, We can filter the instances. / We can choose instances manually. 
+
+
+Task : How to recover a Windows instance administraor password if we loss the keypair.
+AWSSupport-RunEC2RescueForWindowsTool
+
+Task : Make linux ec2 instance as webserver without logging to OS level.
+
+Task : Change the timezone of an windows ec2 instance using ssm run command. (tzutil /s "India Standard Time")
+
+<script>
+tzutil /s "India Standard Time"
+</script>
+
+Task : Install tree package in linux instances without logging into.
+
+================================================================================================
+
+D: 05/02/24
+
+ElasticBeanstalk : It provides preconfigured platforms.
+--> Python, java, go, ruby, php, .net
+--> We can deploy/upload our code to this platform. 
+--> AWS Creates ELB, ASG automatically for our instances.
+--> Less customisations at OS level, We cannot deliver multiple applications.
+
+-------------
+
+Instance Stop protection : protect instance from accidental stops.
+Instance Termination protection : protect instance from accidental Termination.
+Shutdown behaviour : If we initiate a shutdown operation from/at OS, What should happend to our ec2 instance.
+	--> Stop
+	--> Terminate.
+
+
+ENI : Elastic network Interface : Additional NIC card for ec2 instance
+
+
+Metadata : metadata means, data about the data. 
+We are using ec2 instance to deliver some data/webpage. We do have some info about the ec2 instance.. 
+By using metadata url, we can get info about the ec2 instance.
+
+curl http://169.254.169.254/latest/meta-data/metrics/vhostmd
+
+ami-id
+ami-launch-index
+ami-manifest-path
+block-device-mapping/
+events/
+hostname
+identity-credentials/
+instance-action
+instance-id
+instance-life-cycle
+instance-type
+local-hostname
+local-ipv4
+mac
+managed-ssh-keys/
+metrics/
+network/
+placement/
+profile
+public-hostname
+public-ipv4
+public-keys/
+reservation-id
+security-groups
+services/
+
+
+
+Dedicated and Shared tenancy :
+--> Shared tenancy : underlying hardware shared with multiple customers.
+--> Dedicated tenancy:
+	--> Dedicated instance : Dedicated instance provided by aws. No control on backend process.
+	--> Dedicated host : We can apply licenses at underlying physical resources. Also, we can launch multiple instances on a dedicated host.
